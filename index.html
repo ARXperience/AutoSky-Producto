@@ -3,115 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visor AR Personalizado</title>
+    <title>Selector de Proyectos AR</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            height: 100vh; /* Ocupa toda la altura de la pantalla */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        iframe {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh; /* Ocupa toda la pantalla visible */
-            z-index: 100; /* Superposición por encima del iframe */
-            background-color: transparent; /* Elimina cualquier oscurecimiento */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none; /* Permite interacciones con elementos detrás */
-        }
-        .image-overlay img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Imagen a pantalla completa sin deformarse */
-            object-position: top; /* Asegura que la parte superior de la imagen sea visible */
-        }
-        .loading-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
+            background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+            font-family: Arial, sans-serif;
             color: white;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 102;
-            display: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .image-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 1s ease;
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container {
+            width: 100%; /* Ocupa todo el ancho de la pantalla */
+            display: flex;
+            flex-direction: column; /* Las imágenes van una debajo de la otra */
+            align-items: center;
+            gap: 10px; /* Espaciado entre las imágenes */
+        }
+
+        .image-container a {
+            width: 100%; /* Cada imagen ocupa todo el ancho */
+            max-width: 600px; /* Límite opcional para pantallas grandes */
+        }
+
+        .image-container img {
+            width: 100%; /* La imagen se adapta al ancho del contenedor */
+            height: auto; /* Mantiene la proporción */
+            border-radius: 5px; /* Bordes redondeados */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Visor AR para AutoSky Carplay -->
-        <iframe 
-            src="https://arxperience.github.io/AutoSky-Carplay/" 
-            id="arViewer1"
-            allow="camera; gyroscope; accelerometer; magnetometer; xr-spatial-tracking; microphone;">
-        </iframe>
-
-        <!-- Imagen superpuesta para AutoSky Carplay -->
-        <div class="image-overlay" id="imageOverlay1">
-            <img src="https://i.imgur.com/IFAli4y.png" alt="Portada AutoSky Carplay">
-        </div>
-
-        <!-- Visor AR para AutoSky -->
-        <iframe 
-            src="https://arxperience.github.io/AutoSky/" 
-            id="arViewer2"
-            allow="camera; gyroscope; accelerometer; magnetometer; xr-spatial-tracking; microphone;">
-        </iframe>
-
-        <!-- Imagen superpuesta para AutoSky -->
-        <div class="image-overlay" id="imageOverlay2">
-            <img src="https://i.imgur.com/zc09jYb.png" alt="Portada AutoSky">
-        </div>
-
-        <!-- Mensaje de carga -->
-        <div class="loading-message" id="loadingMessage">Espere, cargando el servidor...</div>
+    <h1>Selecciona un Proyecto AR</h1>
+    <div class="image-container">
+        <a href="https://arxperience.github.io/AutoSky-Carplay/" target="_blank">
+            <img src="https://i.imgur.com/IFAli4y.png" alt="AutoSky Carplay">
+        </a>
+        <a href="https://arxperience.github.io/AutoSky/" target="_blank">
+            <img src="https://i.imgur.com/zc09jYb.png" alt="AutoSky">
+        </a>
     </div>
-
-    <script>
-        const imageOverlay1 = document.getElementById('imageOverlay1');
-        const imageOverlay2 = document.getElementById('imageOverlay2');
-        const loadingMessage = document.getElementById('loadingMessage');
-
-        // Muestra el mensaje de carga después de 7 segundos
-        setTimeout(() => {
-            loadingMessage.style.display = 'block';
-        }, 9000); // 7 segundos
-
-        // Oculta las imágenes después de 12 segundos
-        setTimeout(() => {
-            imageOverlay1.classList.add('hidden');
-            imageOverlay2.classList.add('hidden');
-            setTimeout(() => {
-                loadingMessage.style.display = 'none';
-            }, 3000); // Oculta el mensaje después de 5 segundos
-        }, 12000); // 12 segundos
-    </script>
 </body>
 </html>
