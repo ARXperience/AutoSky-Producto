@@ -29,17 +29,18 @@
             flex-direction: column; /* Las imágenes van una debajo de la otra */
             align-items: center;
             gap: 10px; /* Espaciado entre las imágenes */
+            padding: 0 10px; /* Añade espacio lateral para evitar que las imágenes toquen los bordes */
         }
 
         .image-container a {
             width: 100%; /* Cada imagen ocupa todo el ancho */
-            max-width: 600px; /* Límite opcional para pantallas grandes */
         }
 
         .image-container img {
             width: 100%; /* La imagen se adapta al ancho del contenedor */
             height: auto; /* Mantiene la proporción */
             border-radius: 5px; /* Bordes redondeados */
+            max-width: 600px; /* Límite opcional para pantallas grandes */
         }
     </style>
 </head>
